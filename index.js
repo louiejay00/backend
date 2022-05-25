@@ -31,14 +31,6 @@ app.get('/', (req, res) => {
   res.send('Server Running .....')
 });
 
-
-const corsOptions ={
-    origin:'etulod-admin-web.herokuapp.com/:1', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
-
 // User Routes
 app.use("/user", userRoutes);
 //Driver Routes
