@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
   res.send('Server Running .....')
 })
 
-app.use("/"(req, res, next) {
+app.use("/",(req, res, next) {
   //Enabling CORS
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
