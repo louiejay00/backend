@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 
 const corsOptions ={
-    origin:'http://localhost:5000', 
+    origin:'etulod-admin-web.herokuapp.com/:1', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
