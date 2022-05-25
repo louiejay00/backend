@@ -15,20 +15,6 @@ app.use(express.json());
 app.use(cors());
 
 
-const corsOptions ={
-  origin:'https://etulod-admin-web.herokuapp.com/', 
-  credentials:true,     
-  optionSuccessStatus:200
-}
-app.use(cors(corsOptions));
-
-app.use(function (req, res, next) {
-  //Enabling CORS
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "get, head, post, put, patch, delete");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
-  next();
-  });
 //DB URL||URI
 const CONNECTION_URL =
   "mongodb+srv://root:root@cluster0.pkf1s.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
