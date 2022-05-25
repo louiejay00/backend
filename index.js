@@ -27,9 +27,9 @@ mongoose
   .catch((err) => console.log(err));
 
 
-  app.get('/', (req, res) => {
-    res.send('Server Running .....')
-    })
+app.get('/', (req, res) => {
+  res.send('Server Running .....')
+})
 // User Routes
 app.use("/user", userRoutes);
 //Driver Routes
