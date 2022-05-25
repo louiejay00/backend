@@ -17,7 +17,7 @@ app.use(cors());
 
 const corsOptions ={
   origin:'https://etulod-admin-web.herokuapp.com/', 
-  credentials:true,            //access-control-allow-credentials:true
+  credentials:true,     
   optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
