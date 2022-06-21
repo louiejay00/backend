@@ -195,7 +195,6 @@ router.post("/", async (req, res) => {
 
 //signin
 router.post("/signin", async (req, res) => {
-  console.log("asasasasasasasas");
   try {
     let { AdminEmail, AdminPassword } = req.body;
     AdminEmail = AdminEmail.trim();
