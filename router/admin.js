@@ -21,7 +21,7 @@ new CronJob(
   },
   null,
   true,
-  'America/New_York'
+  'Philippines/Manila'
 );
 
 router.get("/", async (req, res) => {
