@@ -5,7 +5,24 @@ const validator = require("validator");
 const { default: Admin } = require("./../models/Admin");
 //password handler
 const bcrypt = require("bcrypt");
+const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
+const fs = require('fs');
+const path = require('path');
+const CronJob = require('cron').CronJob;
 
+
+// AutoBackUp every week (at 00:00 on Sunday)
+
+new CronJob(
+  '0 0 *  * 0',
+  function() {
+    dobackupweekly();
+  },
+  null,
+  true,
+  'America/New_York'
+);
 
 router.get("/", async (req, res) => {
   try {
@@ -54,6 +71,50 @@ router.delete("/:id", async (req, res) => {
       error: err.message,
     });
   }
+});
+router.get('/databasebackup',async (req,res) => {
+  console.log('request all aa gai re backup kar');
+
+  fs.mkdir(path.join(__dirname, 'backup'), (err) => {
+    console.log('Directory created successfully!');
+
+    let folderpath = __dirname+ 'backup';
+    console.log(folderpath);
+        let cmd ='mongodump --uri "mongodb+srv://root:root@cluster0.pkf1s.mongodb.net/myFirstDatabase" -o ' + folderpath;
+        console.log(cmd);
+            exec(cmd, (error, stdout, stderr) => {
+              if(error){
+                console.log(error);
+              }
+              if(stdout){
+                console.log(stdout);
+              }
+              if(stderr){
+                console.log(stderr);
+              }
+            });
+            res.end("successfully backedup");
+
+  });
+
+});
+
+router.get('/databaserestore' ,async (req,res) =>{
+  let backupdatabaselocation =__dirname+ 'backup/myFirstDatabase --drop';
+  console.log(backupdatabaselocation);
+  let cmd ='mongorestore --uri "mongodb+srv://root:root@cluster0.pkf1s.mongodb.net/myFirstDatabase" ' +backupdatabaselocation ;
+  exec(cmd, (error, stdout, stderr) => {
+    if(error){
+      console.log(error);
+    }
+    if(stdout){
+      console.log(stdout);
+    }
+    if(stderr){
+      console.log(stderr);
+    }
+  });
+  res.end("successfully restore");
 });
 
 router.get("/:id", async (req, res) => {
@@ -134,11 +195,12 @@ router.post("/", async (req, res) => {
 
 //signin
 router.post("/signin", async (req, res) => {
+  console.log("asasasasasasasas");
   try {
     let { AdminEmail, AdminPassword } = req.body;
     AdminEmail = AdminEmail.trim();
     AdminPassword = AdminPassword.trim();
-
+console.log("yahamsansmansm");
     if (AdminEmail == "" || AdminPassword == "") {
       return res.status(400).json({
         status: "FAILED",
@@ -172,10 +234,38 @@ router.post("/signin", async (req, res) => {
       data: admin,
     });
   } catch (ex) {
+    console.log(
+"yaha aaya kya"
+    )
     return res.status(500).send({
       message: ex.message,
     });
   }
 });
 
+
+function dobackupweekly(){
+  fs.mkdir(path.join(__dirname, 'backup'), (err) => {
+    console.log('Directory created successfully!');
+    let folderpath = __dirname+ 'backup';
+    console.log(folderpath);
+        let cmd ='mongodump --uri "mongodb+srv://root:root@cluster0.pkf1s.mongodb.net/myFirstDatabase" -o ' + folderpath;
+        console.log(cmd);
+            exec(cmd, (error, stdout, stderr) => {
+              if(error){
+                console.log(error);
+              }
+              if(stdout){
+                console.log(stdout);
+              }
+              if(stderr){
+                console.log(stderr);
+              }
+            });
+  });
+}
+
 module.exports = router;
+
+
+// "start": "react-scripts start",
