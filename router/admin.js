@@ -12,16 +12,16 @@ const path = require('path');
 const CronJob = require('cron').CronJob;
 
 
-AutoBackUp every week (at 00:00 on Sunday)
+// AutoBackUp every week (at 00:00 on Sunday)
 
-new CronJob(
+new CronJob( 
   '0 0 *  * 0',
   function() {
     dobackupweekly();
   },
   null,
   true,
-  'Philippines/Manila'
+  'America/New_York'
 );
 
 router.get("/", async (req, res) => {
