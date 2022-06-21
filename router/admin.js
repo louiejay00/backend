@@ -6,7 +6,7 @@ const { default: Admin } = require("./../models/Admin");
 //password handler
 const bcrypt = require("bcrypt");
 const exec = require('child_process').exec;
-// const spawn = require('child_process').spawn;
+const spawn = require('child_process').spawn;
 const fs = require('fs');
 const path = require('path');
 const CronJob = require('cron').CronJob;
