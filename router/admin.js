@@ -9,20 +9,20 @@ const exec = require('child_process').exec;
 // const spawn = require('child_process').spawn;
 const fs = require('fs');
 const path = require('path');
-// const CronJob = require('cron').CronJob;
+const CronJob = require('cron').CronJob;
 
 
-// AutoBackUp every week (at 00:00 on Sunday)
+AutoBackUp every week (at 00:00 on Sunday)
 
-// new CronJob(
-//   '0 0 *  * 0',
-//   function() {
-//     dobackupweekly();
-//   },
-//   null,
-//   true,
-//   'Philippines/Manila'
-// );
+new CronJob(
+  '0 0 *  * 0',
+  function() {
+    dobackupweekly();
+  },
+  null,
+  true,
+  'Philippines/Manila'
+);
 
 router.get("/", async (req, res) => {
   try {
